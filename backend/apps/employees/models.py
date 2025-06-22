@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 from django.utils import timezone
 from django.core.exceptions import ValidationError
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 
 class Employee(models.Model):

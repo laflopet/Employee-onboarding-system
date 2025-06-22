@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 
 
-class employeeSerializer(serializers.ModelSerializer):
+class EmployeeSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(read_only=True)
     estado = serializers.CharField(read_only=True)
     fecha_registro = serializers.DateTimeField(read_only=True, format="%d/%m/%Y %H:%M:%S")
@@ -13,8 +13,8 @@ class employeeSerializer(serializers.ModelSerializer):
         model = Employee
         fields = [
             'id', 'primer_apellido', 'segundo_apellido', 'primer_nombre', 
-            'otros_nombres', 'pais_empleo', 'tipo_identificacion', 
-            'numero_identificacion', 'correo_electronico', 'fecha_ingreso', 
+            'segundo_nombre', 'pais_empleo', 'tipo_identificacion', 
+            'numero_identificacion', 'email', 'fecha_ingreso', 
             'area', 'estado', 'fecha_registro'
         ]
 
@@ -33,7 +33,7 @@ class employeeSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("El primer nombre debe estar en mayúsculas sin acentos ni ñ.")
             return value
         
-        def validate_otros_nombres(self, value):
+        def validate_segundo_nombre(self, value):
             if value and not all(c.isupper() or c.isspace() for c in value if c.isalpha()):
                 raise serializers.ValidationError("Solo letras mayúsculas A-Z y espacios, sin acentos ni Ñ")
             return value
