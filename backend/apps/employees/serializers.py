@@ -12,9 +12,9 @@ class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employee
         fields = [
-            'id', 'primer_apellido', 'segundo_apellido', 'primer_nombre', 
-            'segundo_nombre', 'pais_empleo', 'tipo_identificacion', 
-            'numero_identificacion', 'email', 'fecha_ingreso', 
+            'id', 'primer_apellido', 'segundo_apellido', 'primer_nombre',
+            'segundo_nombre', 'pais_empleo', 'tipo_identificacion',
+            'numero_identificacion', 'email', 'fecha_ingreso',
             'area', 'estado', 'fecha_registro'
         ]
 

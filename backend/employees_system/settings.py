@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.employees',
     'rest_framework',
-    'rest_framework_simplejwt',
     'corsheaders',  
 ]
 
@@ -57,29 +56,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# JWT Configuration
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': True,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': os.environ.get('JWT_SECRET_KEY', 'your-secret-key-here'),
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
-
-# Rest Framework Configuration
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated',
-#     ],
-#     'DEFAULT_RENDERER_CLASSES': [
-#         'rest_framework.renderers.JSONRenderer',
-#     ],
-# }
 
 ROOT_URLCONF = 'employees_system.urls'
 
