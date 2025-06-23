@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError as DRFValidationError
 from .models import Employee
 from .serializers import EmployeeSerializer
 
@@ -12,17 +13,39 @@ class EmployeeListCreateView(generics.ListCreateAPIView):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(
-            {
-                'message': 'Empleado registrado exitosamente',
-                'data': serializer.data
-            },
-            status=status.HTTP_201_CREATED,
-            headers=headers
-        )
+        try:
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(
+                {
+                    'message': 'Empleado registrado exitosamente',
+                    'data': serializer.data
+                },
+                status=status.HTTP_201_CREATED,
+                headers=headers
+            )
+        except DRFValidationError as e:
+            print(e.detail)
+            return Response(
+                {
+                    'success': False,
+                    'message': 'Error al registrar el empleado.',
+                    'error': e.detail,
+                    
+                },
+                status=status.HTTP_400_BAD_REQUEST
+                
+            )
+        except Exception as e:
+            return Response(
+                {
+                    'success': False,
+                    'message': 'Ocurrió un error inesperado.',
+                    'error': str(e)
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
     
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
