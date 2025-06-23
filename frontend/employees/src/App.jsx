@@ -12,7 +12,7 @@ const EmployeeApp = () => {
     primer_apellido: '',
     segundo_apellido: '',
     primer_nombre: '',
-    otros_nombres: '',
+    segundo_nombre: '',
     pais_empleo: 'Colombia',
     tipo_identificacion: 'Cédula de Ciudadanía',
     numero_identificacion: '',
@@ -72,7 +72,7 @@ const EmployeeApp = () => {
       primer_apellido: employee.primer_apellido,
       segundo_apellido: employee.segundo_apellido,
       primer_nombre: employee.primer_nombre,
-      otros_nombres: employee.otros_nombres || '',
+      segundo_nombre: employee.segundo_nombre || '',
       pais_empleo: employee.pais_empleo,
       tipo_identificacion: employee.tipo_identificacion,
       numero_identificacion: employee.numero_identificacion,
@@ -104,7 +104,7 @@ const EmployeeApp = () => {
       primer_apellido: '',
       segundo_apellido: '',
       primer_nombre: '',
-      otros_nombres: '',
+      segundo_nombre: '',
       pais_empleo: 'Colombia',
       tipo_identificacion: 'Cédula de Ciudadanía',
       numero_identificacion: '',
@@ -123,7 +123,7 @@ const EmployeeApp = () => {
     // Validaciones específicas
     if (['primer_apellido', 'segundo_apellido', 'primer_nombre'].includes(name)) {
       processedValue = value.toUpperCase().replace(/[^A-Z]/g, '');
-    } else if (name === 'otros_nombres') {
+    } else if (name === 'segundo_nombre') {
       processedValue = value.toUpperCase().replace(/[^A-Z ]/g, '');
     }
     
@@ -194,9 +194,9 @@ const EmployeeApp = () => {
                   />
                   <input
                     type="text"
-                    name="otros_nombres"
-                    placeholder="Otros Nombres"
-                    value={formData.otros_nombres}
+                    name="segundo_nombre"
+                    placeholder="segundo_nombree"
+                    value={formData.segundo_nombre}
                     onChange={handleInputChange}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                     maxLength="50"
