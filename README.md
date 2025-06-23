@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ### 4. Agregar el archivo `.env`
 
-El archivo `.env` será enviado por correo electrónico. Una vez recibido:
+El archivo `.env` una vez recibido:
 
 - Ubícalo en la carpeta `backend/`.
 
@@ -76,6 +76,7 @@ El archivo `.env` será enviado por correo electrónico. Una vez recibido:
 
 ```bash
 python manage.py migrate
+python manage.py makemigrations
 ```
 
 ### 6. Iniciar el servidor de desarrollo:
@@ -112,49 +113,6 @@ npm run dev
 Accede desde:  
 [http://localhost:5173](http://localhost:5173)
 
----
-
-## 🔄 Conexión Backend-Frontend
-
-Asegúrate de que:
-
-- El backend tenga configurado CORS en `settings.py`:
-
-```python
-INSTALLED_APPS = [
-    ...
-    'corsheaders',
-    ...
-]
-
-MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    ...
-]
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-]
-```
-
-- El frontend apunte a la URL base del backend: `http://localhost:8000`.
-
----
-
-## 🧪 Recomendaciones Adicionales
-
-- Para crear un superusuario:
-
-```bash
-python manage.py createsuperuser
-```
-
-- Para generar nuevas migraciones si cambian los modelos:
-
-```bash
-python manage.py makemigrations
-python manage.py migrate
-```
 
 ---
 
