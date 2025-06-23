@@ -1,90 +1,165 @@
-# Employee Onboarding System
 
-Sistema para la gestión y registro de empleados, compuesto por un backend en Django REST Framework y un frontend en React con Vite.
+# 📘 Employee Onboarding System
 
-## Estructura del Proyecto
+Sistema para la gestión y registro de empleados. Este proyecto está compuesto por:
+
+- 🧠 **Backend:** Django REST Framework.
+- 💻 **Frontend:** React + Vite.
+
+---
+
+## 📁 Estructura del Proyecto
 
 ```
-backend/
-  apps/
-    employees/
-      # Lógica de empleados (modelos, vistas, serializers, etc.)
-  employees_system/
-    # Configuración principal de Django
-  manage.py
-  requirements.txt
-
-frontend/
-  employees/
-    # Aplicación React + Vite
+project-root/
+│
+├── backend/
+│   ├── apps/
+│   │   └── employees/         # Lógica de empleados (modelos, vistas, serializers, etc.)
+│   ├── employees_system/      # Configuración principal de Django
+│   ├── manage.py
+│   ├── requirements.txt       # Ya configurado con todas las dependencias necesarias
+│   └── .env                   # Se enviará por correo y debe pegarse aquí
+│
+└── frontend/
+    └── employees/             # Aplicación React + Vite
 ```
 
 ---
 
-## Backend (Django REST)
+## 🔧 Requisitos Previos
 
-### Requisitos
+### General
+- Tener **Git** instalado.
+- Editor recomendado: **Visual Studio Code**.
 
-- Python 3.10+
+### Backend
+- Python **3.10** o superior
 - pip
+- `python-decouple`, `django-cors-headers`, `djangorestframework`, etc. (ya incluidos en `requirements.txt`)
 
-### Instalación
-
-1. Ve al directorio del backend:
-   ```sh
-   cd backend
-   ```
-2. Instala las dependencias:
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Realiza las migraciones:
-   ```sh
-   python manage.py migrate
-   ```
-4. Inicia el servidor:
-   ```sh
-   python manage.py runserver
-   ```
-
-### Variables de entorno
-
-Configura tus variables en el archivo `.env` dentro de `backend/`.
-
----
-
-## Frontend (React + Vite)
-
-### Requisitos
-
-- Node.js 18+
+### Frontend
+- Node.js **18** o superior
 - npm
 
-### Instalación
+---
 
-1. Ve al directorio del frontend:
-   ```sh
-   cd frontend/employees
-   ```
-2. Instala las dependencias:
-   ```sh
-   npm install
-   ```
-3. Inicia la aplicación:
-   ```sh
-   npm run dev
-   ```
+## 🚀 Instrucciones para el Backend (Django REST)
+
+### 1. Acceder al directorio del backend:
+
+```bash
+cd backend
+```
+
+### 2. (Opcional) Crear un entorno virtual:
+
+```bash
+python -m venv env
+source env/bin/activate      # Linux/macOS
+env\Scripts\activate         # Windows
+```
+
+### 3. Instalar las dependencias del proyecto:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Agregar el archivo `.env`
+
+El archivo `.env` será enviado por correo electrónico. Una vez recibido:
+
+- Ubícalo en la carpeta `backend/`.
+
+### 5. Aplicar las migraciones:
+
+```bash
+python manage.py migrate
+```
+
+### 6. Iniciar el servidor de desarrollo:
+
+```bash
+python manage.py runserver
+```
+
+El servidor quedará disponible en:  
+[http://localhost:8000](http://localhost:8000)
 
 ---
 
-## Notas
+## ⚙️ Instrucciones para el Frontend (React + Vite)
 
-- El backend expone una API REST para la gestión de empleados.
-- El frontend consume esta API y ofrece una interfaz de usuario moderna.
-- Asegúrate de configurar correctamente CORS en el backend para permitir peticiones desde el frontend.
+### 1. Acceder al directorio del frontend:
+
+```bash
+cd frontend/employees
+```
+
+### 2. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+### 3. Iniciar la aplicación:
+
+```bash
+npm run dev
+```
+
+Accede desde:  
+[http://localhost:5173](http://localhost:5173)
 
 ---
 
-## Licencia
+## 🔄 Conexión Backend-Frontend
 
-MIT
+Asegúrate de que:
+
+- El backend tenga configurado CORS en `settings.py`:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'corsheaders',
+    ...
+]
+
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    ...
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+```
+
+- El frontend apunte a la URL base del backend: `http://localhost:8000`.
+
+---
+
+## 🧪 Recomendaciones Adicionales
+
+- Para crear un superusuario:
+
+```bash
+python manage.py createsuperuser
+```
+
+- Para generar nuevas migraciones si cambian los modelos:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+---
+
+## 📝 Licencia
+
+Por definir.
+
+---
